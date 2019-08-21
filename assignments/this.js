@@ -53,6 +53,6 @@ function cows (color, type){
     return color + ' cows are ' + type;
 }
 
-cows.call('fixThis', ['Black', 'Fat']);
+console.log(cows.call('fixThis', 'Black', 'Fat'));
 console.log(cows.apply('fixThis', ['White', 'Thin']));
 var copyFunction = cows.bind('fixThis');
