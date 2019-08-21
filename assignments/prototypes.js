@@ -51,7 +51,7 @@
     this.stomach = [];
   }
   Person.prototype.greet = function(){
-    return 'Helo, my name is ' + this.name + 'and I am ' + this.age;
+    return 'Helo, my name is ' + this.name + ' and I am ' + this.age;
   }
   Person.prototype.eatEdibles = function(food){
     this.stomach.push(food);
@@ -127,12 +127,34 @@ console.log(beetle.driveDistance());
   // - Babies of course inherit the ability to greet, which can be strange.
   // - Babies should have the ability to play, which persons don't.
   // - By playing, a string is returned with some text of your choosing.
+  function Baby (name, age, game) {
+    Person.call(this, name, age);
+    this.game = game;
+  }
+  Baby.prototype = Object.create(Person.prototype);
+
+  Baby.prototype.play = function () {
+    return this.name + ' loves to play ' + this.game;
+  }
+  var kvothe = new Baby('kvothe', '2', 'truth or dare');
+  console.log(kvothe.play());
+  console.log(kvothe.greet());
 
   // TASK 4
 
   // Use your imagination and come up with constructors that allow to build objects
   // With amazing and original capabilities. Build 3 small ones, or a very
   // complicated one with lots of state. Surprise us!
+  function Books (title, genre, author){
+    this.title = title;
+    this.genre = genre;
+    this.author = author;
+  }
+  Books.prototype.blurb = function (){
+    return this.title + ' is an amazing ' + this.genre + ' book, by ' + this.author;
+  }
+  var holes = new Books('Holes', 'YA', 'Louis Sachar');
+  console.log(holes.blurb());
 
 
 
