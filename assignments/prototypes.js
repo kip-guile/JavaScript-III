@@ -35,41 +35,106 @@
   console.log(jumbo.isFlying)          // false
 */
 
-/*
 
-  TASK 1
 
-  - Build a Person Constructor that takes name and age.
-  - Give persons the ability to greet by returning a string stating name and age.
-  - Give persons the ability to eat edibles.
-  - When eating an edible, it should be pushed into a "stomach" property which is an array.
-  - Give persons the ability to poop.
-  - When pooping, the stomach should empty.
+  // TASK 1
 
-  TASK 2
+  // - Build a Person Constructor that takes name and age.
+  // - Give persons the ability to greet by returning a string stating name and age.
+  // - Give persons the ability to eat edibles.
+  // - When eating an edible, it should be pushed into a "stomach" property which is an array.
+  // - Give persons the ability to poop.
+  // - When pooping, the stomach should empty.
+  function Person(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  Person.prototype.greet = function(){
+    return 'Helo, my name is ' + this.name + 'and I am ' + this.age;
+  }
+  Person.prototype.eatEdibles = function(food){
+    this.stomach.push(food);
+    console.log(this.stomach);
+  }
+  Person.prototype.poop = function(){
+    this.stomach.pop();
+    console.log(this.stomach);
+  }
 
-  - Build a Car constructor that takes model name and make.
-  - Give cars the ability to drive a distance.
-  - By driving a car, the distance driven should be added to an "odometer" property.
-  - Give cars the ability to crash.
-  - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
-  - Give cars the ability to be repaired.
-  - A repaired car can be driven again.
+  const gabe = new Person ('Gabe', 55);
+  gabe.eatEdibles('food');
+  gabe.poop();
+  gabe.eatEdibles('cow');
+  gabe.eatEdibles('goat');
+  gabe.eatEdibles('dog');
+  gabe.poop();
 
-  TASK 3
+  // TASK 2
 
-  - Build a Baby constructor that subclasses the Person built earlier.
-  - Babies of course inherit the ability to greet, which can be strange.
-  - Babies should have the ability to play, which persons don't.
-  - By playing, a string is returned with some text of your choosing.
+  // - Build a Car constructor that takes model name and make.
+  // - Give cars the ability to drive a distance.
+  // - By driving a car, the distance driven should be added to an "odometer" property.
+  // - Give cars the ability to crash.
+  // - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
+  // - Give cars the ability to be repaired.
+  // - A repaired car can be driven again.
+function Car(model, make){
+  this.model = model;
+  this.make = make;
+  this.hasCrashed = false;
+  this.odometer = 0;  
+}
 
-  TASK 4
+Car.prototype.crash = function(){
+  this.hasCrashed = true;
+  console.log('I crraaaasssshhhedddd!!!')
+}
 
-  Use your imagination and come up with constructors that allow to build objects
-  With amazing and original capabilities. Build 3 small ones, or a very
-  complicated one with lots of state. Surprise us!
+Car.prototype.driveDistance = function(){
+  if (this.hasCrashed === true){
+    return 'I crashed at ' + this.odometer + ' miles.';
+  }
+  this.odometer += 25;
+  return this.odometer + ' miles.';
+}
 
-*/
+Car.prototype.repair = function(){
+  this.hasCrashed = false;
+  console.log('I have been repaired!')
+}
+
+
+const beetle = new Car('Beetle', '2009');
+const peugeot = new Car ('Honda', '1993');
+console.log(peugeot.driveDistance());
+peugeot.crash();
+console.log(peugeot.driveDistance());
+console.log(peugeot.driveDistance());
+peugeot.repair();
+console.log(peugeot.driveDistance());
+console.log(beetle.driveDistance());
+beetle.crash();
+console.log(beetle.driveDistance());
+beetle.repair();
+console.log(beetle.driveDistance());
+console.log(beetle.driveDistance());
+
+
+  // TASK 3
+
+  // - Build a Baby constructor that subclasses the Person built earlier.
+  // - Babies of course inherit the ability to greet, which can be strange.
+  // - Babies should have the ability to play, which persons don't.
+  // - By playing, a string is returned with some text of your choosing.
+
+  // TASK 4
+
+  // Use your imagination and come up with constructors that allow to build objects
+  // With amazing and original capabilities. Build 3 small ones, or a very
+  // complicated one with lots of state. Surprise us!
+
+
 
 /*
 
